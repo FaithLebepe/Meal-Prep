@@ -1,1 +1,27 @@
-<p>tabs works!</p>
+<mat-toolbar class="header" color="dark">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo">Meal Prep</div>
+          <ul class="nav-menu">
+            <a mat-button routerLink="/home">HOME</a>
+            <a mat-button routerLink="/about">ABOUT</a>
+            <a mat-button routerLink="/menu">MENU</a>
+            <a mat-button routerLink="/specials">SPECIALS</a>
+            <a mat-button routerLink="/gallery">GALLERY</a>
+            <a mat-button routerLink="/contact">CONTACT</a>
+          </ul>
+        <div class="nav-buttons">
+          <span class="spacer"></span>
+          <button mat-icon-button aria-label="Shopping cart" [matBadge]="cartItemCount" matBadgeColor="accent">
+            <mat-icon class="nav-icon">shopping_cart</mat-icon>
+          </button>
+          <button mat-raised-button class="btn btn-primary">Order Now</button>
+      </div>
+      <div class="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+      </nav>
+    </div>
+</mat-toolbar>

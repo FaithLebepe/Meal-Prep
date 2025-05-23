@@ -1,0 +1,113 @@
+.about {
+  padding: var(--spacing-xxl) 0;
+  background-color: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.about-image {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.about-img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  background: url("https://th.bing.com/th/id/OIP.TMRKhon4NLNUIrc-_QCouQHaHa?w=208&h=208&c=7&r=0&o=5&dpr=1.3&pid=1.7")
+    center/cover no-repeat;
+}
+
+.about-badge {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--secondary);
+  color: var(--dark);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+}
+
+.section-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: var(--spacing-md);
+  position: relative;
+  padding-bottom: var(--spacing-sm);
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: var(--secondary);
+}
+
+.text-center .section-title::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.about-text {
+  font-size: 1.05rem;
+  color: var(--medium-gray);
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.about-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.about-feature-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(157, 46, 51, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.about-feature-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.about-feature-text {
+  font-size: 0.95rem;
+  color: var(--medium-gray);
+}
