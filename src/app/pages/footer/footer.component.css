@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--dark);
+  background-color: var(--primary-dark);
   color: var(--white);
   padding: var(--spacing-xxl) 0 var(--spacing-md);
   position: relative;
@@ -48,7 +48,7 @@
 }
 
 .footer-social-link:hover {
-  background-color: var(--primary);
+  background-color: var(--grey);
   transform: translateY(-3px);
 }
 
@@ -89,7 +89,7 @@
 }
 
 .footer-link a:hover {
-  color: var(--secondary);
+  color: var(--grey);
   transform: translateX(5px);
 }
 
@@ -120,7 +120,7 @@
 }
 
 .footer-bottom a {
-  color: var(--secondary);
+  color: var(--grey);
 }
 
 /* Responsive Design */

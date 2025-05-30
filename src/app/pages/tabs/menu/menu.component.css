@@ -27,7 +27,8 @@
         transform: translateY(-5px);
         box-shadow: var(--shadow-md);
       }
-      .thumbnail{
+
+      .thumbnail {
         border-radius: 100%;
       }
 
@@ -49,6 +50,25 @@
         font-size: 0.95rem;
         color: var(--light);
       }
+    }
+  }
+
+  /* 🔽 Responsive layout for tablets and phones */
+  @media (max-width: 1024px) {
+    .menu-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .menu-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: auto;
+      max-width: 250px;
     }
   }
 }

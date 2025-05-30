@@ -19,6 +19,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  
 }
 
 .logo {
@@ -41,7 +43,7 @@
 
 .nav-link {
   font-weight: 400;
-  color: var(--white);
+  color: var(--white) !important;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9rem;
@@ -49,7 +51,7 @@
 }
 
 .header.scrolled .nav-link {
-  color: var(--dark);
+  color: var(--dark) !important;
 }
 
 .nav-link::after {
@@ -70,7 +72,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--secondary);
+  color: var(--secondary) !important;
 }
 
 .nav-buttons {
@@ -130,7 +132,7 @@
 }
 
 .mobile-toggle span:nth-child(1) {
-  top: 0;
+  top: 0px;
 }
 
 .mobile-toggle span:nth-child(2) {
@@ -153,4 +155,61 @@
 .mobile-toggle.active span:nth-child(3) {
   transform: rotate(-45deg);
   top: 8px;
+}
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .nav-buttons {
+    width: auto; 
+    margin-top: 10px; 
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+  }
+
+  .nav-buttons .btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+  }
+
+  .nav-buttons .nav-icon {
+    font-size: 1.1rem;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-dark);
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    gap: var(--spacing-md);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    color: var(--off-white) !important;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
 }

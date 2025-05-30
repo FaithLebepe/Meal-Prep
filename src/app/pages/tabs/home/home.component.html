@@ -1,29 +1,47 @@
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <p class="hero-subtitle">Healthy, Delicious Meals Delivered Weekly</p>
-          <h1 class="hero-title">
-            Choose your <span>meals</span>, and we’ll handle the rest
-          </h1>
-          <p class="hero-description">
-            Experience the perfect blend of convenience and culinary artistry.
-            Our chef-crafted healthy food uses premium ingredients for an elevated
-            dining experience.
-          </p>
-          <div class="hero-buttons">
-            <a href="#menu" class="btn btn-secondary">View Menu</a>
-            <a href="#" class="btn hero-btn-outline">Order Online</a>
-          </div>
+<app-header></app-header>
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-subtitle">Healthy, Delicious Meals Delivered Weekly</p>
+        <h1 class="hero-title">
+          Choose your <span>meals</span>, and we’ll handle the rest
+        </h1>
+        <p class="hero-description">
+          Experience the perfect blend of convenience and culinary artistry.
+          Our chef-crafted healthy food uses premium ingredients for an elevated
+          dining experience.
+        </p>
+        <div class="hero-buttons">
+          <a href="#menu" class="btn btn-secondary">View Menu</a>
+          <a href="#" class="btn hero-btn-outline">Order Now</a>
         </div>
       </div>
-      <div class="hero-scroll">
-        <i class="fas fa-chevron-down"></i>
-         <i-lucide  [name]="icons.prev" size="48" color="grey" [strokeWidth]="1"></i-lucide>
+    </div>
+    <div class="hero-scroll">
+      <i class="fas fa-chevron-down"></i>
         Scroll Down
-      </div>   
-    </section>
-<app-about></app-about>
-<app-menu></app-menu>
-<app-specials></app-specials>
-<app-gallery></app-gallery>
-    
+    </div>   
+  </section>
+  
+<section id="about">
+  <app-about></app-about>
+</section>
+
+<section id="menu">
+  <app-menu></app-menu>
+</section>
+
+<section id="specials">
+  <app-specials></app-specials>
+</section>
+
+<section id="gallery">
+  <app-gallery></app-gallery>
+</section>
+
+<section id="contact">
+  <app-contact></app-contact>
+</section>
+
+
+<app-footer></app-footer>

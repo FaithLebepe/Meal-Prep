@@ -1,5 +1,5 @@
 // header.component.ts
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,9 +18,28 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatBadgeModule
   ],
-   templateUrl: './tabs.component.html',
-  styleUrl: './tabs.component.css'
+   templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
 })
-export class TabsComponent {
+export class HeaderComponent {
   cartItemCount = 0; 
+  isScrolled = false;
+  isMenuOpen = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 20;
+  }
+  
+  toggleMenu(){
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
 }
