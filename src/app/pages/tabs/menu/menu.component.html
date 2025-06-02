@@ -1,1 +1,17 @@
-<p>menu works!</p>
+<section class="menu-section">
+  <div class="container">
+    <h2 class="section-title">Our Menu</h2>
+    <div class="menu-grid">
+        @for(item of menuItems; track $index){
+          <div class="menu-item">
+              <div class="thumbnail"> 
+                <img [src]="item.image" />
+              </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+        }
+      
+    </div>
+  </div>
+</section>

@@ -1,0 +1,71 @@
+<div class="order-page">
+ <!-- Toolbar -->
+<!-- Toolbar -->
+<div class="toolbar">
+  <button class="toolbar-btn back-btn" (click)="goBack()">← Back</button>
+  <button class="toolbar-btn cart-btn" (click)="goToCart()">🛒 Cart</button>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Quick Bite</h1>
+      <p>Where Taste Takes the Fast Lane</p>
+    </div>
+  </div>
+</section>
+
+      <!-- Food Menu Section -->
+      <section class="menu-section">
+        <h2>FOOD MENU</h2>
+        <div class="menu-grid">
+          <div class="menu-item" *ngFor="let item of menuItems" (click)="selectMenuItem(item)">
+            <div class="menu-item-image">
+              <img [src]="item.image" [alt]="item.name" />
+            </div>
+            <h3>{{ item.name }}</h3>
+          </div>
+        </div>
+      </section>
+
+     <!-- Food Items Section -->
+<section class="items-section">
+  <h2>FOOD ITEMS</h2>
+  <div class="items-grid">
+    <div class="food-item" *ngFor="let item of foodItems">
+      <div class="food-item-image-container">
+        <img [src]="item.image" [alt]="item.name" />
+      </div>
+      <div class="food-item-info">
+        <h3>{{ item.name }}</h3>
+
+        <div class="calories" *ngIf="item.calories">
+          <span class="calories-label">🔥</span>
+          {{ item.calories }} cal
+        </div>
+
+        <div class="ingredients" *ngIf="item.mainIngredients">
+          <span class="ingredients-label">Main ingredients:</span>
+          <span class="ingredients-list">{{ item.mainIngredients.join(', ') }}</span>
+        </div>
+
+        <p class="price" *ngIf="item.price">R{{ item.price }}</p>
+
+        <!-- Week Selection -->
+        <div class="week-selection">
+          <label>Select Week:</label>
+          <select class="week-select" (change)="updateWeekSelection(item.id, $event)">
+            <option value="">Choose week</option>
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+            <option value="4">Week 4</option>
+          </select>
+        </div>
+      </div>
+      <button class="add-btn" (click)="addToCart(item)" [disabled]="!getSelectedWeek(item.id)">+</button>
+    </div>
+  </div>
+</section>
+</div>

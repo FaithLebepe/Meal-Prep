@@ -1,0 +1,29 @@
+<mat-toolbar class="header" [class.scrolled]="isScrolled">
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">Meal Prep</div>
+
+      <ul class="nav-menu" [class.open]="isMenuOpen">
+        <li><a mat-button class="nav-link" href="#home" (click)="scrollToSection('home'); isMenuOpen = false">HOME</a></li>
+        <li><a mat-button class="nav-link" href="#about" (click)="scrollToSection('about'); isMenuOpen = false">ABOUT</a></li>
+        <li><a mat-button class="nav-link" href="#menu" (click)="scrollToSection('menu'); isMenuOpen = false">MENU</a></li>
+        <li><a mat-button class="nav-link" href="#specials" (click)="scrollToSection('specials'); isMenuOpen = false">SPECIALS</a></li>
+        <li><a mat-button class="nav-link" href="#gallery" (click)="scrollToSection('gallery'); isMenuOpen = false">GALLERY</a></li>
+        <li><a mat-button class="nav-link" href="#contact" (click)="scrollToSection('contact'); isMenuOpen = false">CONTACT</a></li>
+      </ul>
+
+      <div class="nav-buttons">
+        <button mat-icon-button aria-label="Shopping cart" [matBadge]="cartItemCount" matBadgeColor="accent" routerLink="/cart">
+          <mat-icon class="nav-icon">shopping_cart</mat-icon>
+        </button>
+        <button mat-raised-button class="btn btn-primary" routerLink="/order" routerLinkActive="active" (click)="isMenuOpen = false">Order Now</button>
+      </div>
+
+      <div class="mobile-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </div>
+</mat-toolbar>

@@ -1,1 +1,141 @@
-<p>cart works!</p>
+ <div class="cart-page">
+      <!-- Header -->
+      <header class="cart-header">
+        <button class="back-btn" (click)="goBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <h1>Your Cart</h1>
+        <div class="cart-count">5 items</div>
+      </header>
+
+      <div class="cart-content" *ngIf="cartItems.length > 0; else emptyCart">
+           <div class="cart-main">
+      <!-- Left Column -->
+      <div class="cart-left">
+        <!-- Cart Items -->
+        <section class="cart-items-section">
+          <div class="cart-item" *ngFor="let item of cartItems">
+            <div class="item-image">
+              <img [src]="item.image" [alt]="item.name" />
+            </div>
+            
+            <div class="item-details">
+              <h3>{{ item.name }}</h3>
+              <p class="item-description" *ngIf="item.description">{{ item.description }}</p>
+              <div class="item-price">R300</div>
+            </div>
+            
+            <div class="quantity-controls">
+              <button class="qty-btn"  [disabled]="item.quantity <= 1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button class="qty-btn" >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            
+            <button class="remove-btn" >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M3 6H5H21M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </section>
+      </div>
+
+         <!-- Right Sidebar -->
+      <aside class="cart-right">
+        <!-- Delivery Options -->
+        <section class="delivery-section">
+          <h2>Delivery Options</h2>
+          <div class="delivery-options">
+            <label class="delivery-option" *ngFor="let option of deliveryOptions">
+              <input type="radio" 
+                     [value]="option.id" 
+                     [(ngModel)]="selectedDelivery" 
+                     name="delivery" />
+              <div class="option-content">
+                <div class="option-info">
+                  <span class="option-name">{{ option.name }}</span>
+                  <span class="option-time">{{ option.time }}</span>
+                </div>
+                <span class="option-price">R100</span>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- Promo Code -->
+        <section class="promo-section">
+          <h2>Promo Code</h2>
+          <div class="promo-input-container">
+            <input type="text" 
+                   [(ngModel)]="promoCode" 
+                   placeholder="Enter promo code"
+                   class="promo-input" />
+            <button class="apply-btn"  [disabled]="!promoCode.trim()">
+              Apply
+            </button>
+          </div>
+          <div class="promo-message" *ngIf="promoMessage" [class.success]="promoApplied" [class.error]="!promoApplied">
+            {{ promoMessage }}
+          </div>
+        </section>
+
+        <!-- Order Summary -->
+        <section class="summary-section">
+          <h2>Order Summary</h2>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>R7000</span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery</span>
+            <span>R40</span>
+          </div>
+          <div class="summary-row" *ngIf="discount > 0">
+            <span>Discount</span>
+            <span class="discount">-R50</span>
+          </div>
+          <div class="summary-row tax-row">
+            <span>R900</span>
+          </div>
+          <hr class="summary-divider">
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span>R 500</span>
+          </div>
+
+           <!-- Checkout Button -->
+      <button class="checkout-btn-in-summary">Checkout</button>
+        </section>
+      </aside>
+    </div>
+  </div>
+    
+
+      <!-- Empty Cart -->
+      <ng-template #emptyCart>
+        <div class="empty-cart">
+          <div class="empty-cart-icon">
+            <!-- <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+              <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V17C17 18.1 16.1 19 15 19H9C7.9 19 7 18.1 7 17V13M17 13C18.1 13 19 13.9 19 15S18.1 17 17 17M9 13C7.9 13 7 13.9 7 15S7.9 17 9 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg> -->
+          </div>
+          <h2>Your cart is empty</h2>
+          <p>Add some delicious items from our menu to get started!</p>
+          <button class="continue-shopping-btn" >
+            Continue Shopping
+          </button>
+        </div>
+      </ng-template>
+
+     
+    </div>
