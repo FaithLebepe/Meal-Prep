@@ -1,16 +1,13 @@
-// app.routes.ts
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/tabs/home/home.component';
 import { AboutComponent } from './pages/tabs/about/about.component';
 import { MenuComponent } from './pages/tabs/menu/menu.component';
-import { SpecialsComponent } from './pages/tabs/specials/specials.component';
 import { GalleryComponent } from './pages/tabs/gallery/gallery.component';
 import { ContactComponent } from './pages/tabs/contact/contact.component';
 import { HeaderComponent } from './pages/tabs/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { CartComponent } from './pages/tabs/cart/cart.component';
 import { OrderComponent } from './pages/tabs/order/order.component';
-
 
 export const routes: Routes = [
   { 
@@ -37,11 +34,6 @@ export const routes: Routes = [
     path: 'menu',
     component: MenuComponent,
     title: 'Our Menu '
-  },
-  {
-    path: 'specials',
-    component: SpecialsComponent,
-    title: 'Special Offers '
   },
   {
     path: 'gallery',

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuCategory } from '../../../interfaces/menu-item';
 
 @Component({
   selector: 'app-menu',
@@ -8,35 +9,35 @@ import { Component } from '@angular/core';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-  menuItems = [
+  menuItems: MenuCategory[] = [
     {
-      title: 'Hot Beverages',
-      description: 'Wide range of steaming hot coffee to make you fresh and light.',
+      id: 1,
+      name: 'Breakfast',
       image: 'assets/pictures/Hot.jpeg',
     },
     {
-      title: 'Cold Beverages',
-      description: 'Creamy and frothy cold coffee to make you cool.',
+      id: 2,
+      name: 'Lunch',
       image: 'assets/pictures/Cold.jpeg',
     },
     {
-      title: 'Refreshment',
-      description: 'Fruit and icy refreshing drink to make you feel refreshed.',
+      id: 3,
+      name: 'Salads',
       image: 'assets/pictures/refreshment.jpg',
     },
     {
-      title: 'Special Combos',
-      description: 'Perfectly paired meal deals for every craving.',
+      id: 4,
+      name: 'Dinner',
       image: 'assets/pictures/combos.jpeg',
     },
     {
-      title: 'Dessert',
-      description: 'Sweet treats and delightful desserts.',
+      id: 5,
+      name: 'Fruit jars',
       image: 'assets/pictures/desert.jpg',
     },
     {
-      title: 'Wraps',
-      description: 'Classic healthy-food favorite done right.',
+      id: 6,
+      name: 'Wraps',
       image: 'assets/pictures/wrap.jpg',
     },
   ];
