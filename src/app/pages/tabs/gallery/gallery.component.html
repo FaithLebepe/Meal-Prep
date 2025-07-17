@@ -1,33 +1,35 @@
-<div class="main-gallery">
-  <ng-container *ngIf="galleryItems[currentIndex] as item">
-    <div class="main-thumb">
-        <img *ngIf="item.type === 'image'" [src]="item.src" class="main-image" alt="Gallery item" />
-    <video
-      *ngIf="item.type === 'video'"
-      [src]="item.src"
-      controls
-      class="main-image"
-    ></video>
-    </div>
-  </ng-container>
+<div class="gallery-container">
+  <h1 class="gallery-heading">Gallery</h1>
 
-  <div class="thumbnail-row">
-    <ng-container *ngFor="let thumb of galleryItems; let i = index">
-      <img
-        *ngIf="thumb.type === 'image'"
-        [src]="thumb.src"
-        class="thumbnail"
-        [class.active]="i === currentIndex"
-        (click)="selectImage(i)"
-      />
-      <video
-        *ngIf="thumb.type === 'video'"
-        [src]="thumb.src"
-        class="thumbnail"
-        muted
-        (click)="selectImage(i)"
-        [class.active]="i === currentIndex"
-      ></video>
-    </ng-container>
-  </div>
+    <div class="filter-buttons centered-buttons">
+      <button (click)="setCategory('All')">All</button>
+      <button (click)="setCategory('Breakfast')">Breakfast</button>
+      <button (click)="setCategory('Dinner')">Dinner</button>
+      <button (click)="setCategory('Snack')">Snacks</button>
+      <button (click)="setCategory('Special')">Specials</button>
+    </div>
+
+    <div class="masonry">
+      <ng-container *ngFor="let item of filteredItems">
+        <div class="media-item" (click)="openLightbox(item)">
+          <ng-container [ngSwitch]="item.type">
+            <img *ngSwitchCase="'image'" [src]="item.src" [alt]="item.alt" />
+            <div *ngSwitchCase="'video'" class="video-wrapper">
+              <video [src]="item.src" muted autoplay loop></video>
+              <div class="play-icon">▶</div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" *ngIf="selectedMedia" (click)="closeLightbox()">
+      <div class="lightbox-content" (click)="$event.stopPropagation()">
+        <img *ngIf="selectedMedia.type === 'image'" [src]="selectedMedia.src" [alt]="selectedMedia.alt" />
+        <video *ngIf="selectedMedia.type === 'video'" [src]="selectedMedia.src" controls autoplay></video>
+        <button class="close-btn" (click)="closeLightbox()">✖</button>
+      </div>
+    </div>
 </div>
+
