@@ -1,8 +1,5 @@
-// app.component.ts
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './pages/tabs/header.component';
-import { FooterComponent } from './pages/footer/footer.component';
 @Component({
   selector: 'app-root',
   standalone: true,
