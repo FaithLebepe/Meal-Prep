@@ -8,6 +8,7 @@ import { HeaderComponent } from './pages/tabs/header.component';
 import { FooterComponent } from './pages/footer/footer.component';
 import { CartComponent } from './pages/tabs/cart/cart.component';
 import { OrderComponent } from './pages/tabs/order/order.component';
+import { SeederComponent } from './seeder/seeder/seeder.component';
 
 export const routes: Routes = [
   { 
@@ -61,4 +62,9 @@ export const routes: Routes = [
     title: 'footer'
   },
 
+  {
+  path: 'seed',
+  component: SeederComponent,
+  title: 'seed'
+}
 ];
