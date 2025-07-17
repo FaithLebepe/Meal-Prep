@@ -1,4 +1,5 @@
 export interface FoodItem {
+selectedDays: any;
   id: string;
   name: string;
   image: string;

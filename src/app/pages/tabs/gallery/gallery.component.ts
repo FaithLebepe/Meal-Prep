@@ -1,11 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NgIf, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 import { register } from 'swiper/element/bundle';
-
+import { MediaItem } from '../../../interfaces/media-items';
 register();
 @Component({
   selector: 'app-gallery',
-  imports: [ NgFor,NgIf],
+  imports: [ NgFor,NgIf, NgSwitchCase, NgSwitch ],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './gallery.component.html',
@@ -13,27 +13,41 @@ register();
 })
 export class GalleryComponent {
 
-  galleryItems = [
-   { type: 'image', src: 'assets/gallery/food.jpeg' },
-    { type: 'image', src: 'assets/gallery/pasta.jpeg' },
-    { type: 'image', src: 'assets/gallery/salad.jpeg' },
-    { type: 'video', src: 'assets/gallery/video1.mp4' },
-    { type: 'video', src: 'assets/gallery/video2.mp4' },
-    { type: 'video', src: 'assets/gallery/video3.mp4' },
+  selectedCategory: string = 'All';
+
+  mediaItems: MediaItem[] = [
+    { type: 'image', src: 'assets/gallery/food.jpeg', alt: 'Oats Bowl', category: 'Breakfast' },
+    { type: 'image', src: 'assets/gallery/pasta.jpeg', alt: 'Grilled Chicken', category: 'Dinner' },
+    { type: 'video', src: 'assets/gallery/', alt: 'Fruit Bowl Video', category: 'Snack' },
+    { type: 'image', src: 'assets/gallery/food.jpeg', alt: 'Special Dish', category: 'Special' },
+    { type: 'image', src: 'assets/gallery/salad.jpeg', alt: 'Oats Bowl', category: 'Breakfast' },
+    { type: 'image', src: 'assets/gallery/pasta.jpeg', alt: 'Grilled Chicken', category: 'Dinner' },
+    { type: 'video', src: 'assets/gallery/', alt: 'Fruit Bowl Video', category: 'Snack' },
+    { type: 'image', src: 'assets/gallery/salad.jpeg', alt: 'Special Dish', category: 'Special' },
+    { type: 'image', src: 'assets/gallery/pasta.jpeg', alt: 'Oats Bowl', category: 'Breakfast' },
+    { type: 'image', src: 'assets/gallery/food.jpeg', alt: 'Grilled Chicken', category: 'Dinner' },
+    { type: 'video', src: 'assets/gallery/', alt: 'Fruit Bowl Video', category: 'Snack' },
+    { type: 'image', src: 'assets/gallery/salad.jpeg', alt: 'Special Dish', category: 'Special' },
+   
   ];
 
-  currentIndex = 0;
-
-  selectImage(index: number) {
-    this.currentIndex = index;
+  get filteredItems(): MediaItem[] {
+    return this.selectedCategory === 'All'
+      ? this.mediaItems
+      : this.mediaItems.filter(item => item.category === this.selectedCategory);
   }
 
-  nextImage() {
-    this.currentIndex = (this.currentIndex + 1) % this.galleryItems.length;
+  setCategory(category: string) {
+    this.selectedCategory = category;
   }
 
-  prevImage() {
-    this.currentIndex =
-      (this.currentIndex - 1 + this.galleryItems.length) % this.galleryItems.length;
+  selectedMedia: MediaItem | null = null;
+
+  openLightbox(item: MediaItem) {
+    this.selectedMedia = item;
+  }
+
+  closeLightbox() {
+    this.selectedMedia = null;
   }
 }

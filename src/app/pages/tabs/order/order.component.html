@@ -1,71 +1,100 @@
 <div class="order-page">
- <!-- Toolbar -->
-<!-- Toolbar -->
-<div class="toolbar">
-  <button class="toolbar-btn back-btn" (click)="goBack()">← Back</button>
-  <button class="toolbar-btn cart-btn" (click)="goToCart()">🛒 Cart</button>
-</div>
+  <div class="order-content-wrapper">
+    <!-- Main content -->
+    <div class="main-content">
+      
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <button class="toolbar-btn back-btn" (click)="goBack()">← Back</button>
+        <button class="toolbar-btn cart-btn" (click)="goToCart()">
+          🛒 Cart ({{ cartItemCount }})
+        </button>
+      </div>
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1>Quick Bite</h1>
-      <p>Where Taste Takes the Fast Lane</p>
-    </div>
-  </div>
-</section>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Quick Bite</h1>
+            <p>Where Taste Takes the Fast Lane</p>
+          </div>
+        </div>
+      </section>
 
       <!-- Food Menu Section -->
       <section class="menu-section">
         <h2>FOOD MENU</h2>
         <div class="menu-grid">
-          <div class="menu-item" *ngFor="let item of menuItems" (click)="selectMenuItem(item)">
+          <button 
+            *ngFor="let category of menuItems" 
+            (click)="selectCategory(category.name)" 
+            class="menu-item"
+            [ngClass]="{ 'active': selectedCategory === category.name }">
+            
             <div class="menu-item-image">
-              <img [src]="item.image" [alt]="item.name" />
+              <img [src]="category.image" [alt]="category.name" />
             </div>
-            <h3>{{ item.name }}</h3>
-          </div>
+            <span>{{ category.name }}</span>
+          </button>
+
         </div>
       </section>
 
-     <!-- Food Items Section -->
-<section class="items-section">
-  <h2>FOOD ITEMS</h2>
-  <div class="items-grid">
-    <div class="food-item" *ngFor="let item of foodItems">
-      <div class="food-item-image-container">
-        <img [src]="item.image" [alt]="item.name" />
-      </div>
-      <div class="food-item-info">
-        <h3>{{ item.name }}</h3>
+      <!-- Food Items Section -->
+      <section class="items-section">
+        <h2>FOOD ITEMS</h2>
 
-        <div class="calories" *ngIf="item.calories">
-          <span class="calories-label">🔥</span>
-          {{ item.calories }} cal
+        <div class="items-layout">
+          <!-- Sidebar: Fitness Goals -->
+          <aside class="goals-sidebar">
+            <h3>Fitness Goals</h3>
+            <div *ngFor="let goal of fitnessGoals">
+              <button 
+                (click)="selectGoal(goal)" 
+                [ngClass]="{ 'active': selectedGoal === goal }">
+                {{ goal }}
+              </button>
+            </div>
+          </aside>
+
+          <!-- Food Grid -->
+          <div class="items-grid">
+            <div class="food-item" *ngFor="let item of filteredFoodItems">
+              <div class="food-item-image-container">
+                <img [src]="item.image" [alt]="item.name" />
+              </div>
+
+              <div class="food-item-info">
+                <h3>{{ item.name }}</h3>
+
+                <div class="calories" *ngIf="item.calories">
+                  <span class="calories-label">🔥</span>
+                  {{ item.calories }} cal
+                </div>
+
+                <div class="ingredients" *ngIf="item.mainIngredients?.length">
+                  <span class="ingredients-label">Main ingredients:</span>
+                  <span class="ingredients-list">{{ item.mainIngredients.join(', ') }}</span>
+                </div>
+
+                <div class="days-selection">
+                  <label for="days">Select your plan:</label>
+                  <select id="days" class="days-select" [(ngModel)]="selectedDays[item.id]">
+                    <option [value]="5">5 Days </option>
+                    <option [value]="7">7 Days</option>
+                    <option [value]="10">10 Days</option>
+                  </select>
+                </div>
+
+                 <div class="price" *ngIf="item.price?.[selectedDays[item.id]]">
+                  <strong>R{{ item.price[selectedDays[item.id]] }}</strong>
+                </div>
+              </div>
+              <button class="add-btn" (click)="addToCart(item)" [disabled]="!selectedDays">+</button>
+            </div>
+          </div>
         </div>
-
-        <div class="ingredients" *ngIf="item.mainIngredients">
-          <span class="ingredients-label">Main ingredients:</span>
-          <span class="ingredients-list">{{ item.mainIngredients.join(', ') }}</span>
-        </div>
-
-        <p class="price" *ngIf="item.price">R{{ item.price }}</p>
-
-        <!-- Week Selection -->
-        <div class="week-selection">
-          <label>Select Week:</label>
-          <select class="week-select" (change)="updateWeekSelection(item.id, $event)">
-            <option value="">Choose week</option>
-            <option value="1">Week 1</option>
-            <option value="2">Week 2</option>
-            <option value="3">Week 3</option>
-            <option value="4">Week 4</option>
-          </select>
-        </div>
-      </div>
-      <button class="add-btn" (click)="addToCart(item)" [disabled]="!getSelectedWeek(item.id)">+</button>
+      </section>
     </div>
   </div>
-</section>
 </div>
